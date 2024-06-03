@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Email Finder</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <h1>Email Finder</h1>
+    <form action="#" th:action="@{/find-emails}" th:object="${userInput}" method="post">
+        <label for="domain">Domain:</label>
+        <input type="text" id="domain" name="domain" th:field="*{domain}" placeholder="e.g., apple.com" required>
+        <div th:if="${#fields.hasErrors('domain')}" th:errors="*{domain}" class="error"></div>
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}" placeholder="e.g., John" required>
+        <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></div>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}" placeholder="e.g., Doe" required>
+        <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></div>
+
+        <button type="submit">Find Emails</button>
+    </form>
+</div>
+</body>
+</html>

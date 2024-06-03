@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Email Validation Results</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background-color: #28a745;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+        }
+
+        .log {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Email Validation Results</h1>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+
+    <div class="log" id="log">
+        <!-- Log entries will appear here -->
+    </div>
+
+    <a href="/">Back to Search</a>
+</div>
+
+<!-- Initialize SSE with Thymeleaf variables -->
+<script type="module" th:inline="javascript">
+    import { initializeSSE } from '/js/storage.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        /*<![CDATA[*/
+        const domain = [[${domain}]];
+        const firstName = [[${firstName}]];
+        const lastName = [[${lastName}]];
+        /*]]>*/
+        initializeSSE(domain, firstName, lastName);
+    });
+</script>
+</body>
+</html>
